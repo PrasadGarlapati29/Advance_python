@@ -173,3 +173,132 @@ with open("data.json", "r") as f:
 * For JSON → use `json.dump()`, `json.load()` to work with files.
 
 
+
+
+---
+
+# 📝 Python File Handling & JSON Cheatsheet
+
+---
+
+
+
+## 4. Best Practice → with
+
+```python
+with open("myfile.txt", "r") as f:
+    data = f.read()
+    print(data)   # Auto closes after block
+```
+
+---
+
+## 5. File Pointer
+
+```python
+f.tell()        # current position
+f.seek(0)       # move to start
+```
+
+---
+
+## 6. File Existence & Deletion
+
+```python
+import os
+
+if os.path.exists("myfile.txt"):
+    print("File exists ✅")
+    os.remove("myfile.txt")   # delete file
+else:
+    print("File does not exist ❌")
+```
+
+---
+
+## 7. Binary Files
+
+```python
+with open("pic.jpg", "rb") as f1:
+    with open("copy.jpg", "wb") as f2:
+        f2.write(f1.read())
+```
+
+---
+
+# 📝 JSON Handling in Python
+
+---
+
+## 1. Import
+
+```python
+import json
+```
+
+---
+
+## 2. Python → JSON
+
+### Python object → JSON string
+
+```python
+json_string = json.dumps(python_object)
+```
+
+### Python object → JSON file
+
+```python
+with open("data.json", "w") as f:
+    json.dump(python_object, f)
+```
+
+---
+
+## 3. JSON → Python
+
+### JSON string → Python object
+
+```python
+python_object = json.loads(json_string)
+```
+
+### JSON file → Python object
+
+```python
+with open("data.json", "r") as f:
+    python_object = json.load(f)
+```
+
+---
+
+## 4. Pretty Print & Sorting
+
+```python
+print(json.dumps(python_object, indent=4, sort_keys=True))
+```
+
+---
+
+## 5. JSON Mnemonics (to remember easily)
+
+* **dumps → string** (“dump into string”)
+* **dump → file** (“dump into file”)
+* **loads → string** (“load from string”)
+* **load → file** (“load from file”)
+  👉 Trick: **S = string, no S = file**
+
+---
+
+## ✅ Final Quick Table
+
+| Operation            | Python Syntax                     |
+| -------------------- | --------------------------------- |
+| Python → JSON string | `json.dumps(obj)`                 |
+| Python → JSON file   | `json.dump(obj, file)`            |
+| JSON string → Python | `json.loads(json_str)`            |
+| JSON file → Python   | `json.load(file)`                 |
+| Pretty print JSON    | `json.dumps(obj, indent=4)`       |
+| Sort JSON keys       | `json.dumps(obj, sort_keys=True)` |
+
+---
